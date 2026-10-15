@@ -11,52 +11,61 @@ namespace Sandbox;
 /// </summary>
 internal static class SteamCallbacks
 {
-	internal static void InitSteamCallbacks()
-	{
-		SteamFriends.OnPersonaStateChange += SteamFriends_OnPersonaStateChange;
-		SteamFriends.OnFriendRichPresenceUpdate += SteamFriends_OnPersonaStateChange;
-		SteamFriends.OnGameRichPresenceJoinRequested += SteamFriends_OnGameRichPresenceJoinRequested;
-		SteamFriends.OnGameLobbyJoinRequested += SteamFriends_OnGameLobbyJoinRequested;
-	}
+        internal static void InitSteamCallbacks()
+        {
+                SteamFriends.OnPersonaStateChange += SteamFriends_OnPersonaStateChange;
+                SteamFriends.OnFriendRichPresenceUpdate += SteamFriends_OnPersonaStateChange;
+                SteamFriends.OnGameRichPresenceJoinRequested += SteamFriends_OnGameRichPresenceJoinRequested;
+                SteamFriends.OnGameLobbyJoinRequested += SteamFriends_OnGameLobbyJoinRequested;
+        }
 
-	private static void SteamFriends_OnGameRichPresenceJoinRequested( Steamworks.Friend friend, string connectStr )
-	{
-		using var scope = GlobalContext.MenuScope();
-		ConsoleSystem.Run( "connect", connectStr.Split( ' ' ).Last() );
-	}
+        private static void SteamFriends_OnGameRichPresenceJoinRequested( Steamworks.Friend friend, string connectStr )
+        {
+                using var scope = GlobalContext.MenuScope();
+                ConsoleSystem.Run( "connect", connectStr.Split( ' ' ).Last() );
+        }
 
-	private static void SteamFriends_OnGameLobbyJoinRequested( Sandbox.SteamId steamId )
-	{
-		IGameInstanceDll.Current.CloseGame();
-		_ = TryJoinLobby( steamId );
-	}
+        private static void SteamFriends_OnGameLobbyJoinRequested( Sandbox.SteamId steamId )
+        {
+                // PATCHED: if a standalone game has installed its own join handler
+                // (via Game.Overlay.EnableStandaloneLobbyJoin), skip the default
+                // flow which closes the current game and returns to the menu.
+                if ( Game.Overlay.SuppressMenuJoinHandler )
+                {
+                        Log.Info( "OnGameLobbyJoinRequested suppressed — standalone game is handling it." );
+                        return;
+                }
 
-	private static async Task TryJoinLobby( Sandbox.SteamId steamId )
-	{
-		using var scope = GlobalContext.MenuScope();
+                IGameInstanceDll.Current.CloseGame();
+                _ = TryJoinLobby( steamId );
+        }
 
-		var lobby = new Lobby( steamId.ValueUnsigned );
-		if ( await lobby.Refresh() == false )
-		{
-			IModalSystem.Current?.Notice( "Joining failed", "The lobby doesn't exist anymore.", "heart_broken" );
-			return;
-		}
+        private static async Task TryJoinLobby( Sandbox.SteamId steamId )
+        {
+                using var scope = GlobalContext.MenuScope();
 
-		if ( lobby.IsParty )
-		{
-			_ = PartyRoom.Join( lobby );
+                var lobby = new Lobby( steamId.ValueUnsigned );
+                if ( await lobby.Refresh() == false )
+                {
+                        IModalSystem.Current?.Notice( "Joining failed", "The lobby doesn't exist anymore.", "heart_broken" );
+                        return;
+                }
 
-			// doesn't matter if they're also in a game already - the PartyRoom will handle connecting to that
-			return;
-		}
+                if ( lobby.IsParty )
+                {
+                        _ = PartyRoom.Join( lobby );
 
-		PartyRoom.Current?.Leave();
-		ConsoleSystem.Run( "connect", steamId.Value );
-	}
+                        // doesn't matter if they're also in a game already - the PartyRoom will handle connecting to that
+                        return;
+                }
 
-	private static void SteamFriends_OnPersonaStateChange( Steamworks.Friend obj )
-	{
-		using var scope = GlobalContext.MenuScope();
-		Event.Run( "friend.change", new Sandbox.Friend( obj ) );
-	}
+                PartyRoom.Current?.Leave();
+                ConsoleSystem.Run( "connect", steamId.Value );
+        }
+
+        private static void SteamFriends_OnPersonaStateChange( Steamworks.Friend obj )
+        {
+                using var scope = GlobalContext.MenuScope();
+                Event.Run( "friend.change", new Sandbox.Friend( obj ) );
+        }
 }

@@ -140,6 +140,27 @@ public class EditorMainWindow : DockWindow, IUndoSystemProvider
 		}
 
 		{
+			var git = MenuBar.AddMenu( "Git" );
+			var status = git.AddOption( "Status", "info", GitIntegration.RefreshStatus );
+			var pull = git.AddOption( "Pull", "cloud_download", GitIntegration.Pull );
+			var commit = git.AddOption( "Commit all changes..", "check", GitIntegration.CommitAll );
+			var push = git.AddOption( "Push", "cloud_upload", GitIntegration.Push );
+
+			git.AddSeparator();
+			git.AddOption( "Open Repository Folder", "folder", GitIntegration.OpenRepository );
+			git.AddOption( "Open Git Changes", "source_control", OpenGitChanges );
+
+			git.AboutToShow += () =>
+			{
+				var available = GitIntegration.HasRepository;
+				status.Enabled = available;
+				pull.Enabled = available;
+				commit.Enabled = available;
+				push.Enabled = available;
+			};
+		}
+
+		{
 			EditMenu = MenuBar.AddMenu( "Edit" );
 
 			undoOption = EditMenu.AddOption( "Undo", "undo", Undo, "editor.undo" );
@@ -157,6 +178,9 @@ public class EditorMainWindow : DockWindow, IUndoSystemProvider
 		{
 			ViewsMenu = MenuBar.AddMenu( "View" );
 			ViewsMenu.AboutToShow += OnViewsMenuAboutToShow;
+			ViewsMenu.AddOption( "Project Search", "search", OpenProjectSearch );
+			ViewsMenu.AddOption( "Git Changes", "source_control", OpenGitChanges );
+			ViewsMenu.AddOption( "Dev Notes", "note", OpenDevNotes );
 		}
 
 		{
@@ -248,6 +272,24 @@ public class EditorMainWindow : DockWindow, IUndoSystemProvider
 	void OpenSolution()
 	{
 		CodeEditor.OpenSolution();
+	}
+
+	static void OpenProjectSearch()
+	{
+		EditorWindow.DockManager.SetDockState( "Project Search", true );
+		EditorWindow.DockManager.RaiseDock( "Project Search" );
+	}
+
+	static void OpenGitChanges()
+	{
+		EditorWindow.DockManager.SetDockState( "Git Changes", true );
+		EditorWindow.DockManager.RaiseDock( "Git Changes" );
+	}
+
+	static void OpenDevNotes()
+	{
+		EditorWindow.DockManager.SetDockState( "Dev Notes", true );
+		EditorWindow.DockManager.RaiseDock( "Dev Notes" );
 	}
 
 	IUndoSystem IUndoSystemProvider.UndoSystem => SceneEditorSession.Active?.UndoSystem;

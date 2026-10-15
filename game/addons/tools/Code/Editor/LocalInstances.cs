@@ -1,5 +1,6 @@
 using Editor.Preferences;
 using System.Diagnostics;
+using System.IO;
 
 namespace Editor;
 
@@ -15,7 +16,7 @@ public static class LocalInstances
 	{
 		using var p = new Process();
 
-		p.StartInfo.FileName = "sbox.exe";
+		p.StartInfo.FileName = Path.Combine( Environment.CurrentDirectory, "bin", ".internal", "sbox.exe" );
 		p.StartInfo.WorkingDirectory = Environment.CurrentDirectory;
 		p.StartInfo.CreateNoWindow = true;
 		p.StartInfo.RedirectStandardOutput = true;

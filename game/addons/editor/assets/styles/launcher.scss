@@ -1,7 +1,7 @@
 @import "_palette.scss";
 
 //
-// The launcher's own styles - the project rows, the news rail, the creator. Everything
+// The launcher's own styles - the project rows and creator. Everything
 // generic, and the palette variables, live in editor.scss.
 //
 
@@ -11,8 +11,7 @@ LauncherWindow
 }
 
 //
-// The background - the latest news artwork once it arrives, softened so the UI stays
-// readable. The window's ground colour shows until then.
+// Neutral background behind the launcher content.
 //
 .backdrop
 {
@@ -22,21 +21,10 @@ LauncherWindow
 	width: 100%;
 	height: 100%;
 	pointer-events: none;
-	background-size: cover;
-	background-position: center;
-
-	// The blur fades out at the panel's edges, so overscan past the window to keep that off screen
-	transform: scale( 1.1 );
-
-	filter: blur( 8px ) saturate( 1.1 ) brightness( 0.45 );
-	opacity: 0;
-	transition: opacity 1.2s ease-out;
+	background-color: $raised;
 }
 
-.backdrop.visible { opacity: 0.65; }
-
-.style-light .backdrop { filter: blur( 8px ) saturate( 1.1 ) brightness( 1.15 ); }
-.style-light .backdrop.visible { opacity: 0.35; }
+.style-light .backdrop { background-color: $l-raised; }
 
 // The window lights up while a droppable project hovers over it
 LauncherWindow.dropping { border-color: $accent; }
@@ -265,61 +253,6 @@ LauncherWindow.dropping .projects { background-color: rgba( $accent, 0.06 ); bor
 .projectrow .open .icon { font-size: 13px; margin-right: 4px; }
 
 //
-// The rail - platform news down the right hand side
-//
-.rail
-{
-	width: 290px;
-	flex-shrink: 0;
-	flex-direction: column;
-	margin-left: 14px;
-	min-width: 0;
-}
-
-.news-list
-{
-	flex-grow: 1;
-	flex-direction: column;
-	overflow: scroll;
-	padding-bottom: 20px;
-}
-
-.newscard
-{
-	flex-shrink: 0;
-	flex-direction: column;
-	margin-bottom: 12px;
-	border-radius: 10px;
-	overflow: hidden;
-	background-color: $surface;
-	border: 1px solid $line;
-	pointer-events: all;
-	cursor: pointer;
-	animation-name: rise;
-	animation-duration: 0.4s;
-	animation-timing-function: ease-out;
-	animation-fill-mode: both;
-	transition: border-color 0.12s ease-out;
-}
-
-.newscard:hover { border-color: $accent; }
-
-.newscard .image
-{
-	height: 136px;
-	flex-shrink: 0;
-	background-size: cover;
-	background-position: center;
-	transition: transform 0.3s ease-out;
-}
-
-.newscard:hover .image { transform: scale( 1.05 ); }
-
-.newscard .text { flex-direction: column; padding: 10px 12px; background-color: $raised; }
-.newscard .title { font-size: 12px; font-weight: 600; }
-.newscard .date { font-size: 10px; color: $text-faint; margin-top: 3px; }
-
-//
 // Project creator
 //
 .creator
@@ -422,7 +355,7 @@ LauncherWindow.style-light .sectionlabel .text { color: $l-text; }
 
 .style-light .header .count { background-color: $l-raised; border-color: $l-line; color: $l-text-muted; }
 
-.style-light .project-column .sectionlabel .rule, .style-light .rail .sectionlabel .rule, .style-light .sidebar .sectionlabel .rule { background-color: rgba( $l-text, 0.20 ); }
+.style-light .project-column .sectionlabel .rule, .style-light .sidebar .sectionlabel .rule { background-color: rgba( $l-text, 0.20 ); }
 
 .style-light .projectrow { background-color: $l-surface; border-color: $l-line; }
 .style-light .projectrow:hover { background-color: $l-raised; border-color: $accent; }
@@ -436,11 +369,6 @@ LauncherWindow.style-light .sectionlabel .text { color: $l-text; }
 .style-light .projectrow .stat.playing .icon { color: $accent; }
 .style-light .projectrow .badge { color: $l-text-faint; }
 .style-light .projectrow .badge.pin { color: $accent; }
-
-.style-light .newscard { background-color: $l-surface; border-color: $l-line; }
-.style-light .newscard:hover { border-color: $accent; }
-.style-light .newscard .text { background-color: $l-raised; }
-.style-light .newscard .date { color: $l-text-faint; }
 
 .style-light .creator .field > .label { color: $l-text-muted; }
 .style-light .creator .section-heading { color: $l-text; }

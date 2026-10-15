@@ -1,6 +1,7 @@
 ﻿using Editor.Preferences;
 using Sandbox.Network;
 using System.Diagnostics;
+using System.IO;
 
 namespace Editor;
 
@@ -101,7 +102,7 @@ partial class ViewportTools
 	void SpawnDedicatedServer()
 	{
 		using var p = new Process();
-		p.StartInfo.FileName = "sbox-server.exe";
+		p.StartInfo.FileName = Path.Combine( Environment.CurrentDirectory, "bin", ".internal", "sbox-server.exe" );
 		p.StartInfo.WorkingDirectory = Environment.CurrentDirectory;
 
 		p.StartInfo.ArgumentList.Add( "+game" );

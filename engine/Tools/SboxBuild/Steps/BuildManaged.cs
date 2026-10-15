@@ -122,7 +122,11 @@ internal class BuildManaged( bool clean = false )
 						_ => "benchmark"
 					};
 					var extension = OperatingSystem.IsWindows() ? ".exe" : "";
-					File.Copy( Path.Combine( output, name + extension ), Path.Combine( rootDir, "game", name + extension ), true );
+					var destinationDirectory = name is "sbox" or "sbox-server" or "benchmark"
+						? Path.Combine( rootDir, "game", "bin", ".internal" )
+						: Path.Combine( rootDir, "game" );
+					Directory.CreateDirectory( destinationDirectory );
+					File.Copy( Path.Combine( output, name + extension ), Path.Combine( destinationDirectory, name + extension ), true );
 					BuildDisplay.Progress( ++completedLaunchers, launcherProjects.Length );
 				}
 
@@ -142,6 +146,12 @@ internal class BuildManaged( bool clean = false )
 				{
 					var looseFile = Path.Combine( rootDir, "game", file );
 					if ( File.Exists( looseFile ) ) File.Delete( looseFile );
+				}
+
+				foreach ( var file in new[] { "sbox.exe", "sbox", "sbox-server.exe", "sbox-server", "benchmark.exe", "benchmark" } )
+				{
+					var rootFile = Path.Combine( rootDir, "game", file );
+					if ( File.Exists( rootFile ) ) File.Delete( rootFile );
 				}
 			}
 

@@ -9,8 +9,7 @@ namespace Sandbox.LauncherUI;
 
 /// <summary>
 /// The launcher, as panels. A sidebar carries the brand, the page navigation and the utility
-/// links; the main column is the current page - projects or samples - with platform news in
-/// a rail on the right.
+/// links; the main column is the current page - projects or samples.
 /// </summary>
 class LauncherWindow : Panel
 {
@@ -121,8 +120,7 @@ class LauncherWindow : Panel
 	Panel backdrop;
 
 	/// <summary>
-	/// The background - the latest news artwork once it arrives, softened so the UI stays
-	/// readable. The window's ground colour shows until then.
+	/// The neutral background behind the launcher content.
 	/// </summary>
 	void AddBackdrop()
 	{
@@ -368,79 +366,8 @@ class LauncherWindow : Panel
 		projectsPanel = projectColumn.AddChild<Panel>();
 		projectsPanel.AddClass( "projects" );
 
-		_ = FillNewsAsync( body );
-
 		RefreshProjects();
 	}
-
-	/// <summary>
-	/// The rail down the right hand side - platform news, once the backend is up. It only
-	/// exists at all when there's news to put in it, so offline costs no space.
-	/// </summary>
-	async Task FillNewsAsync( Panel body )
-	{
-		if ( newsCache is null )
-		{
-			await PanelAppSystem.ApiReady;
-
-			try
-			{
-				newsCache = await Backend.News.GetPlatformNews( 4, 0 );
-			}
-			catch ( Exception )
-			{
-				// Offline is fine - there's just no rail
-				return;
-			}
-		}
-
-		var posts = newsCache;
-		if ( !body.IsValid() || posts is null || posts.Length == 0 ) return;
-
-		// The freshest artwork becomes the room's lighting
-		var media = posts.FirstOrDefault( x => !string.IsNullOrEmpty( x.Media ) )?.Media;
-
-		if ( media is not null && backdrop.IsValid() )
-		{
-			backdrop.Style.Set( "background-image", $"url( {media} )" );
-			backdrop.AddClass( "visible" );
-		}
-
-		var rail = body.AddChild<Panel>();
-		rail.AddClass( "rail" );
-
-		var label = rail.AddChild<Panel>();
-		label.AddClass( "sectionlabel" );
-		label.Add.Label( "LATEST NEWS", "text" );
-		label.AddChild<Panel>().AddClass( "rule" );
-
-		var newsList = rail.AddChild<Panel>();
-		newsList.AddClass( "news-list" );
-
-		foreach ( var post in posts )
-		{
-			var url = post.Url;
-			if ( url is not null && !url.StartsWith( "http" ) ) url = $"{Global.BackendUrl}{url}";
-			if ( url is not null ) url += url.Contains( '?' ) ? "&utm_source=launcher" : "?utm_source=launcher";
-
-			var card = newsList.Add.Panel( "newscard" );
-			card.AddEventListener( "onclick", () => Editor.EditorUtility.OpenFolder( url ) );
-
-			if ( !string.IsNullOrEmpty( post.Media ) )
-			{
-				var image = card.AddChild<Panel>();
-				image.AddClass( "image" );
-				image.Style.Set( "background-image", $"url( {post.Media} )" );
-			}
-
-			var text = card.AddChild<Panel>();
-			text.AddClass( "text" );
-			text.Add.Label( post.Title, "title" );
-			text.Add.Label( RelativeTime( post.Created.LocalDateTime ), "date" );
-		}
-	}
-
-	static Sandbox.Services.NewsPostDto[] newsCache;
 
 	string SortIcon() => sort switch
 	{

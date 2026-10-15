@@ -26,6 +26,12 @@
 		return System.IO.Path.Combine( AppContext.BaseDirectory, fileName );
 	}
 
+	internal static string GetInternalExecutablePath( string gameFolder, string baseName )
+	{
+		var fileName = OperatingSystem.IsWindows() ? $"{baseName}.exe" : baseName;
+		return System.IO.Path.Combine( gameFolder, "bin", ".internal", fileName );
+	}
+
 	/// <summary>
 	/// From here we'll open the native dlls and inject our function pointers into them,
 	/// and retrieve function pointers from them.
@@ -47,8 +53,7 @@
 		}
 
 		// set engine paths etc
-		var exeName = OperatingSystem.IsWindows() ? "sbox.exe" : "sbox";
-		NativeEngine.EngineGlobal.Plat_SetModuleFilename( System.IO.Path.Combine( gameFolder, exeName ) );
+		NativeEngine.EngineGlobal.Plat_SetModuleFilename( GetInternalExecutablePath( gameFolder, "sbox" ) );
 		NativeEngine.EngineGlobal.Plat_SetCurrentDirectory( $"{gameFolder}" );
 	}
 }

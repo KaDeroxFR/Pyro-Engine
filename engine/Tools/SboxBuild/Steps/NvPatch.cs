@@ -18,7 +18,7 @@ internal class NvPatch
 			}
 
 			Log.Info( "Step 1: Running nvpatch on sbox.exe" );
-			string sboxPath = Path.Combine( rootDir, "game", "sbox.exe" );
+			string sboxPath = Path.Combine( rootDir, "game", "bin", ".internal", "sbox.exe" );
 			if ( !RunNvPatch( nvpatchPath, sboxPath ) )
 				return ExitCode.Failure;
 
