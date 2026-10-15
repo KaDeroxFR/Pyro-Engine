@@ -19,14 +19,14 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo( "MenuBuild" )]
 [assembly: InternalsVisibleTo( "ShaderCompiler" )]
 [assembly: InternalsVisibleTo( "Sandbox.Mounting.Test" )]
-[assembly: InternalsVisibleTo( "sbox-launcher" )]
+[assembly: InternalsVisibleTo( "pyro-launcher" )]
 [assembly: InternalsVisibleTo( "panelgallery" )]
-[assembly: InternalsVisibleTo( "sbox-server" )]
-[assembly: InternalsVisibleTo( "sbox-dev" )]
-[assembly: InternalsVisibleTo( "sbox" )]
+[assembly: InternalsVisibleTo( "pyro-server" )]
+[assembly: InternalsVisibleTo( "pyro-dev" )]
+[assembly: InternalsVisibleTo( "pyro" )]
 [assembly: InternalsVisibleTo( "sbox-standalone" )]
 [assembly: InternalsVisibleTo( "sbox-profiler" )]
-[assembly: InternalsVisibleTo( "benchmark" )]
+[assembly: InternalsVisibleTo( "pyro-benchmark" )]
 [assembly: InternalsVisibleTo( "CreateGameCache" )]
 
 [assembly: TasksPersistOnContextReset]
@@ -34,4 +34,3 @@ using System.Runtime.CompilerServices;
 // Moved filesystem to its own assembly
 [assembly: TypeForwardedTo( typeof( BaseFileSystem ) )]
 [assembly: TypeForwardedTo( typeof( FileWatch ) )]
-

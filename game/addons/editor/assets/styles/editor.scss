@@ -213,6 +213,14 @@
 .iconbutton:active { background-color: $ground; transform: scale( 0.94 ); }
 .iconbutton .icon { font-size: 16px; }
 
+
+.lockup .brand-logo
+{
+	width: 34px;
+	height: 34px;
+	border-radius: 9px;
+	flex-shrink: 0;
+}
 .primarybutton
 {
 	flex-shrink: 0;

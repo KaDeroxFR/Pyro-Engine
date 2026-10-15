@@ -37,7 +37,7 @@ internal class WelcomePopup : Widget
 
 		headerIcon = header.Add( new IconButton( "waving_hand" ) { IconSize = 32, FixedWidth = 48, FixedHeight = 48, Background = Color.Transparent, TransparentForMouseEvents = true } );
 
-		headerTitle = header.Add( new Label( "Welcome to the s&box editor!" ) );
+		headerTitle = header.Add( new Label( "Welcome to the Pyro editor!" ) );
 
 		header.AddStretchCell();
 

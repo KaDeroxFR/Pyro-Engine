@@ -102,7 +102,7 @@ partial class ViewportTools
 	void SpawnDedicatedServer()
 	{
 		using var p = new Process();
-		p.StartInfo.FileName = Path.Combine( Environment.CurrentDirectory, "bin", ".internal", "sbox-server.exe" );
+		p.StartInfo.FileName = Path.Combine( Environment.CurrentDirectory, "bin", ".internal", "pyro-server.exe" );
 		p.StartInfo.WorkingDirectory = Environment.CurrentDirectory;
 
 		p.StartInfo.ArgumentList.Add( "+game" );

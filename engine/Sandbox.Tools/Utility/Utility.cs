@@ -548,7 +548,7 @@ public static partial class EditorUtility
 
 		if ( toLauncher )
 		{
-			ProcessStartInfo info = new ProcessStartInfo( NetCore.GetExecutablePath( "sbox-launcher" ) );
+			ProcessStartInfo info = new ProcessStartInfo( NetCore.GetExecutablePath( "pyro-launcher" ) );
 			info.WorkingDirectory = System.Environment.CurrentDirectory;
 
 			Process.Start( info );
@@ -764,7 +764,7 @@ public static partial class EditorUtility
 	{
 		EditorWindow.Close();
 
-		ProcessStartInfo info = new ProcessStartInfo( NetCore.GetExecutablePath( "sbox-dev" ), $"{Environment.CommandLine} -project \"{Project.Current.ConfigFilePath}\"" );
+		ProcessStartInfo info = new ProcessStartInfo( NetCore.GetExecutablePath( "pyro-dev" ), $"{Environment.CommandLine} -project \"{Project.Current.ConfigFilePath}\"" );
 		info.UseShellExecute = OperatingSystem.IsWindows();
 		info.CreateNoWindow = true;
 		info.WorkingDirectory = System.Environment.CurrentDirectory;

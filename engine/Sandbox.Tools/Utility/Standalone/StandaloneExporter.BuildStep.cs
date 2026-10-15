@@ -22,10 +22,10 @@ public static class BuildStepExtensions
 {
 	public static string GetDescription( this BuildStep step ) => step switch
 	{
-		BuildStep.CopyDLLs => "Copying core s&box DLL files",
-		BuildStep.CopyCode => "Copying core s&box code files",
-		BuildStep.CopyCoreAssets => "Copying core s&box assets",
-		BuildStep.CopyBaseAssets => "Copying base s&box assets",
+		BuildStep.CopyDLLs => "Copying core Pyro DLL files",
+		BuildStep.CopyCode => "Copying core Pyro code files",
+		BuildStep.CopyCoreAssets => "Copying core Pyro assets",
+		BuildStep.CopyBaseAssets => "Copying base Pyro assets",
 		BuildStep.CopyCloudAssets => "Copying project cloud assets",
 		BuildStep.CopyProjectAssets => "Copying project local assets",
 		BuildStep.FinalizeExecutable => "Finalizing standalone executable",

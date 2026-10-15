@@ -58,7 +58,7 @@ partial class StandaloneExporter
 			[Standalone.ProjectConfigResourceName] = Encoding.UTF8.GetBytes( Project.Config.ToJson() ),
 		};
 
-		PeResources.Write( executablePath, data, new PeResources.VersionInfo( title, Project.Config.Org, $"Built {_exportConfig.BuildDate:u} with s&box" ), _exportConfig.TargetIcon );
+		PeResources.Write( executablePath, data, new PeResources.VersionInfo( title, Project.Config.Org, $"Built {_exportConfig.BuildDate:u} with Pyro" ), _exportConfig.TargetIcon );
 
 		Logger.Info( $"Wrote {executablePath}" );
 	}

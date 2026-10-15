@@ -9,7 +9,7 @@
 		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<GenerateDocumentationFile>False</GenerateDocumentationFile>
-		<AssemblyName>sbox</AssemblyName>
+		<AssemblyName>pyro</AssemblyName>
 		<CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
 		<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
 		<NoWarn>1701;1702;1591;NETSDK1138</NoWarn>

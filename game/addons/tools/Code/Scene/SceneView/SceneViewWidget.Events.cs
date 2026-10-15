@@ -20,7 +20,7 @@ public partial class SceneViewWidget : ResourceLibrary.IEventListener
 		popup.WindowTitle = "External Changes Detected";
 
 		string filename = System.IO.Path.GetFileName( Session.Scene.Source.ResourcePath );
-		popup.MessageLabel.Text = $"The asset '{filename}' has been modified outside of the s&box editor.\n\nPress Reload to discard any unsaved changes and load the new version.\nPress Keep My Work to overwrite the external changes with your working copy.";
+		popup.MessageLabel.Text = $"The asset '{filename}' has been modified outside of the Pyro editor.\n\nPress Reload to discard any unsaved changes and load the new version.\nPress Keep My Work to overwrite the external changes with your working copy.";
 
 		popup.ButtonLayout.Spacing = 4;
 		popup.ButtonLayout.AddStretchCell();

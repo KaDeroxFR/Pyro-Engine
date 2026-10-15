@@ -31,7 +31,7 @@ public class GameAppSystem : AppSystem
 
 		var createInfo = new AppSystemCreateInfo()
 		{
-			WindowTitle = "s&box benchmark",
+			WindowTitle = "Pyro benchmark",
 			Flags = AppSystemFlags.IsGameApp
 		};
 

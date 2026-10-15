@@ -17,11 +17,11 @@ internal class UploadBuildArtifacts
 	private static readonly string[] IncludeGlobs =
 	{
 		"*.exe",
-		"sbox",
-		"sbox-dev",
-		"sbox-launcher",
-		"sbox-server",
-		"benchmark",
+		"pyro",
+		"pyro-dev",
+		"pyro-launcher",
+		"pyro-server",
+		"pyro-benchmark",
 		".version",
 		"thirdpartylegalnotices.txt",
 		"thirdpartylegalnotices/**",

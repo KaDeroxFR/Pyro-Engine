@@ -2,19 +2,19 @@
   "profiles": {
     "Game": {
       "commandName": "Executable",
-      "executablePath": "../game/sbox.exe",
+      "executablePath": "../game/bin/.internal/pyro.exe",
       "commandLineArgs": "-dev -noasserts",
       "workingDirectory": "../../game/"
     },
     "Editor": {
       "commandName": "Executable",
-      "executablePath": "../game/sbox-dev.exe",
+      "executablePath": "../game/pyro-dev.exe",
       "workingDirectory": "../../game/",
       "nativeDebugging": true
     },
     "Server": {
       "commandName": "Executable",
-      "executablePath": "../game/sbox-server.exe",
+      "executablePath": "../game/bin/.internal/pyro-server.exe",
       "commandLineArgs": "-noasserts +game facepunch.sandbox facepunch.flatgrass",
       "workingDirectory": "../../game/",
       "nativeDebugging": true

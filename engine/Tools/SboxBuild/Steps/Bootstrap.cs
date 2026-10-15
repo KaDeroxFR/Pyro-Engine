@@ -63,7 +63,7 @@ internal static class Bootstrap
 				return result;
 			}
 
-			Log.WriteConsole( $"Bootstrap completed. Launch {Path.Combine( "game", "sbox-dev" + (OperatingSystem.IsWindows() ? ".exe" : "") )}.", "" );
+			Log.WriteConsole( $"Bootstrap completed. Launch {Path.Combine( "game", "pyro-dev" + (OperatingSystem.IsWindows() ? ".exe" : "") )}.", "" );
 			return ExitCode.Success;
 		}
 		catch ( Exception ex )

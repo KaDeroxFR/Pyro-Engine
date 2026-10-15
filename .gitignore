@@ -101,3 +101,8 @@ engine/TestResults/
 /game/tools
 /game/aftermath_dumps
 /game/gamecache
+
+!/game/core/tools/images/pyro-logo.png
+!/game/core/tools/images/pyro-logo.png.meta
+!/game/core/tools/images/pyro-logo-transparent.png
+!/game/core/tools/images/pyro-logo-transparent.png.meta

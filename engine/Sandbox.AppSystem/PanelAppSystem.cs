@@ -39,7 +39,7 @@ public class PanelAppSystem : AppSystem
 
 		var createInfo = new AppSystemCreateInfo
 		{
-			WindowTitle = "s&box",
+			WindowTitle = "Pyro",
 			Flags = AppSystemFlags.IsEditor,
 		};
 

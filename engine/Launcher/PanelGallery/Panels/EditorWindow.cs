@@ -158,7 +158,7 @@ public partial class EditorWindow : Panel
 		var name = session?.Scene?.Name ?? "Untitled";
 		var dirty = session?.HasUnsavedChanges == true ? "*" : "";
 
-		windowTitle.Text = $"{name}{dirty} - s&box editor";
+		windowTitle.Text = $"{name}{dirty} - Pyro editor";
 	}
 	Sandbox.UI.Label WindowButton( Panel parent, string icon, string classname, Action onClick )
 	{

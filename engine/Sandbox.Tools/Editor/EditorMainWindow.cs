@@ -115,7 +115,7 @@ public class EditorMainWindow : DockWindow, IUndoSystemProvider
 		Current = this;
 		Visible = false;
 		Enabled = false;
-		WindowTitle = "s&box editor";
+		WindowTitle = "Pyro editor";
 		DeleteOnClose = true;
 		FullScreenManager = new();
 
@@ -220,7 +220,7 @@ public class EditorMainWindow : DockWindow, IUndoSystemProvider
 			help.AddOption( "Report a Bug", "bug_report", () => EditorUtility.OpenFolder( "https://github.com/Facepunch/sbox-public/issues" ) );
 
 			help.AddSeparator();
-			help.AddOption( "About s&box editor", "info", () =>
+			help.AddOption( "About Pyro editor", "info", () =>
 			{
 				var aboutWidget = new AboutWidget();
 				aboutWidget.SetModal( true, true );
@@ -554,7 +554,7 @@ public class EditorMainWindow : DockWindow, IUndoSystemProvider
 
 	public void UpdateEditorTitle( string title )
 	{
-		Title = $"{title} - s&box editor{(Global.IsApiConnected ? "" : " - offline")}";
+		Title = $"{title} - Pyro editor{(Global.IsApiConnected ? "" : " - offline")}";
 	}
 
 	void BuildRecentScenes()

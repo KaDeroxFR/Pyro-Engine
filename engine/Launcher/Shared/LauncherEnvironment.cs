@@ -7,7 +7,7 @@ namespace Sandbox;
 public static class LauncherEnvironment
 {
 	/// <summary>
-	/// The folder containing sbox.exe
+	/// The folder containing pyro.exe
 	/// </summary>
 	public static string GamePath { get; set; }
 

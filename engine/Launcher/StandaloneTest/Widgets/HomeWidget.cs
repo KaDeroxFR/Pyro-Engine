@@ -402,7 +402,7 @@ public class HomeWidget : Widget
 		// LastOpened's already been bumped and saved, so this project is now top of the jump list.
 		TaskbarJumpList.Refresh();
 
-		ProcessStartInfo info = new ProcessStartInfo( NetCore.GetExecutablePath( "sbox-dev" ), $"{Environment.CommandLine} -project \"{project.ConfigFilePath}\" {args ?? ""}" );
+		ProcessStartInfo info = new ProcessStartInfo( NetCore.GetExecutablePath( "pyro-dev" ), $"{Environment.CommandLine} -project \"{project.ConfigFilePath}\" {args ?? ""}" );
 
 		// Only let the shell start it on Windows - on Linux UseShellExecute goes through
 		// xdg-open, which opens the editor in a web browser rather than running it.
@@ -422,4 +422,3 @@ public class HomeWidget : Widget
 		Paint.DrawRect( LocalRect );
 	}
 }
-

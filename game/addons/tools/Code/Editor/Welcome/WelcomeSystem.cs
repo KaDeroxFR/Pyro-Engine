@@ -56,7 +56,7 @@ internal static class WelcomeSystem
 
 		// Step 6: Cloud Browser
 		steps.Add( new WelcomeStep(
-			"This is the <strong>Cloud Browser</strong>, where you can browse assets that have been uploaded to the workshop.<br /><br />Here you can find models, materials, sounds, and more that you can instantly drag-and-drop directly into the main viewport to use right away!<br /><br />You can visit <a href=\"https://sbox.game\">sbox.game</a> in your browser and favourite various collections to get quick access to them here. (eg. <a href=\"https://sbox.game/facepunch/sboxassets\">s&box assets</a> and <a href=\"https://sbox.game/facepunch/sboxweapons\">s&box weapons</a>)",
+			"This is the <strong>Cloud Browser</strong>, where you can browse assets that have been uploaded to the workshop.<br /><br />Here you can find models, materials, sounds, and more that you can instantly drag-and-drop directly into the main viewport to use right away!<br /><br />You can visit <a href=\"https://sbox.game\">sbox.game</a> in your browser and favourite various collections to get quick access to them here. (eg. <a href=\"https://sbox.game/facepunch/sboxassets\">Pyro assets</a> and <a href=\"https://sbox.game/facepunch/sboxweapons\">Pyro weapons</a>)",
 			() => MainAssetBrowser.Instance,
 			onEnter: () => RaiseCloudBrowser()
 		) );
@@ -69,13 +69,13 @@ internal static class WelcomeSystem
 
 		// Step 8: Project Settings
 		steps.Add( new WelcomeStep(
-			"Then <strong>once your game is complete and ready for the world</strong>, you can come here to configure your project settings and prepare for publishing.<br /><br /><strong>You can choose to publish your game</strong>, so other people with s&box can play the game and find it in their Discover tab.<br /><br /><strong>Or you can choose to export the game</strong>, and publish it yourself on external sites/platforms.",
+			"Then <strong>once your game is complete and ready for the world</strong>, you can come here to configure your project settings and prepare for publishing.<br /><br /><strong>You can choose to publish your game</strong>, so other people with Pyro can play the game and find it in their Discover tab.<br /><br /><strong>Or you can choose to export the game</strong>, and publish it yourself on external sites/platforms.",
 			() => FindTitleBarButtons()
 		) );
 
 		// Step 9: Welcome complete
 		steps.Add( new WelcomeStep(
-			"That's it! You're ready to start creating in s&box.<br /><br />Remember, you can always access this tutorial again from Help → Show Welcome Tutorial if you ever need a reminder."
+			"That's it! You're ready to start creating in Pyro.<br /><br />Remember, you can always access this tutorial again from Help → Show Welcome Tutorial if you ever need a reminder."
 		) );
 	}
 

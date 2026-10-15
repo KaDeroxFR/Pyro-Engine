@@ -17,8 +17,8 @@ namespace Editor
 			Singleton = this;
 			DeleteOnClose = true;
 
-			WindowTitle = "Opening s&box Editor";
-			SetWindowIcon( Pixmap.FromFile( "logo_rounded.png" ) );
+			WindowTitle = "Opening Pyro Editor";
+			SetWindowIcon( Pixmap.FromFile( "pyro-logo.png" ) );
 			BackgroundImage = LoadSplashImage();
 
 			// load any saved geometry
@@ -160,8 +160,8 @@ namespace Editor
 
 			var projectTitle = Project.Current?.Config?.Title;
 			var title = string.IsNullOrEmpty( projectTitle )
-				? "s&box Editor"
-				: $"s&box Editor - {projectTitle}";
+				? "Pyro Editor"
+				: $"Pyro Editor - {projectTitle}";
 
 			Paint.SetPen( Color.White );
 			Paint.SetDefaultFont( 10, 600 );

@@ -56,13 +56,13 @@ public static class TaskbarJumpList
 
 		public static void Rebuild( IReadOnlyList<RecentProject> projects )
 		{
-			// sbox-dev.exe sits next to us in the game folder. Entries launch it directly so clicking
+			// pyro-dev.exe sits next to us in the game folder. Entries launch it directly so clicking
 			// one opens the project without bouncing through the launcher.
 			var gameDir = Path.GetDirectoryName( Environment.ProcessPath );
 			if ( string.IsNullOrEmpty( gameDir ) )
 				return;
 
-			var editorExe = Path.Combine( gameDir, "sbox-dev.exe" );
+			var editorExe = Path.Combine( gameDir, "pyro-dev.exe" );
 
 			// No SetAppID on purpose. We commit under our own implicit (path derived) appid, which is
 			// the same one the taskbar uses for a pin to this exe, so it works on pins that already exist.

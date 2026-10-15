@@ -15,7 +15,7 @@ internal class LauncherPreferences
 
 	public static string DefaultProjectLocation
 	{
-		get => _cookie.GetString( "DefaultProjectLocation", Path.Combine( Environment.GetFolderPath( Environment.SpecialFolder.MyDocuments ), "S&box Projects" ) );
+		get => _cookie.GetString( "DefaultProjectLocation", Path.Combine( Environment.GetFolderPath( Environment.SpecialFolder.MyDocuments ), "Pyro Projects" ) );
 		set => _cookie.SetString( "DefaultProjectLocation", value );
 	}
 

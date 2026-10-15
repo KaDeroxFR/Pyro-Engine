@@ -9,18 +9,20 @@ class LogoWidget : Widget
 
 	protected override Vector2 SizeHint()
 	{
-		return new Vector2( 32 );
+		return new Vector2( 150, 40 );
 	}
 
 	protected override void OnPaint()
 	{
 		Paint.ClearPen();
 		Paint.ClearBrush();
-		Paint.SetDefaultFont();
 
-		var r = LocalRect;
-		r.Width = r.Height;
+		var logoRect = LocalRect.Align( 32, TextFlag.LeftCenter );
+		Paint.Draw( logoRect, "logo_rounded.png" );
 
-		Paint.Draw( r, "logo_rounded.png" );
+		var textRect = LocalRect.Shrink( 42, 0, 0, 0 );
+		Paint.SetHeadingFont( 18, 700 );
+		Paint.Pen = Theme.Text;
+		Paint.DrawText( textRect, "Engine", TextFlag.LeftCenter );
 	}
 }

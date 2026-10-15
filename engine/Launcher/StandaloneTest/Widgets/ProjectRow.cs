@@ -193,20 +193,9 @@ public partial class ProjectRow : ItemRow
 
 	protected override void OnPaintIcon( Rect iconRect )
 	{
-		bool hasThumb = !string.IsNullOrEmpty( Package?.Thumb ) && Package.Thumb.StartsWith( "http" );
-
-		if ( hasThumb )
-		{
-			Paint.Draw( iconRect, Package.Thumb, borderRadius: 4 );
-		}
-		else
-		{
-			Paint.SetBrushAndPen( Theme.SurfaceBackground );
-			Paint.DrawRect( iconRect, 4 );
-
-			Paint.Pen = Theme.Text;
-			Paint.DrawIcon( iconRect, "sports_esports", iconRect.Height * 0.6f );
-		}
+		Paint.SetBrush( Color.Parse( "#FF5D3D" ).Value );
+		Paint.DrawRect( iconRect, 4 );
+		Paint.Draw( iconRect.Shrink( 4 ), "logo_rounded.png", borderRadius: 2 );
 	}
 
 	protected override void OnMouseEnter()
@@ -233,4 +222,3 @@ public partial class ProjectRow : ItemRow
 		Update();
 	}
 }
-

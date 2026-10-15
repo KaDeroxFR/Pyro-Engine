@@ -170,7 +170,7 @@ public partial class Project
 				await project.GenerateProject( generator );
 			}
 
-			generator.Run( "sbox.exe", "bin/managed", solutionName, EngineFileSystem.Root.GetFullPath( "/" ), solutionFolder );
+			generator.Run( "pyro.exe", "bin/managed", solutionName, EngineFileSystem.Root.GetFullPath( "/" ), solutionFolder );
 		}
 		catch ( System.Exception e )
 		{
@@ -367,4 +367,3 @@ public partial class Project
 		return CompileGroup.FindCompilerByAssemblyName( assembly.GetName().Name );
 	}
 }
-

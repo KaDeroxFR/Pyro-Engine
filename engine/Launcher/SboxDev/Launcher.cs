@@ -22,8 +22,8 @@ public static class Launcher
 
 		if ( !HasCommandLineSwitch( "-project" ) && !HasCommandLineSwitch( "-test" ) )
 		{
-			// we pass the command line, so we can pass it on to the sbox-launcher (for -game etc)
-			ProcessStartInfo info = new ProcessStartInfo( NetCore.GetExecutablePath( "sbox-launcher" ), Environment.CommandLine );
+			// we pass the command line, so we can pass it on to the pyro launcher (for -game etc)
+			ProcessStartInfo info = new ProcessStartInfo( NetCore.GetExecutablePath( "pyro-launcher" ), Environment.CommandLine );
 
 			// Only let the shell start it on Windows - on Linux UseShellExecute goes through
 			// xdg-open, which opens the launcher in a web browser rather than running it.

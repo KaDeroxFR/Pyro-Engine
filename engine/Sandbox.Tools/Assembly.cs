@@ -6,5 +6,5 @@
 [assembly: InternalsVisibleTo( "Sandbox.Test.Engine" )]
 [assembly: InternalsVisibleTo( "Sandbox.Test.Integration" )]
 [assembly: InternalsVisibleTo( "Sandbox.AppSystem" )]
-[assembly: InternalsVisibleTo( "sbox-launcher" )]
+[assembly: InternalsVisibleTo( "pyro-launcher" )]
 [assembly: InternalsVisibleTo( "panelgallery" )]

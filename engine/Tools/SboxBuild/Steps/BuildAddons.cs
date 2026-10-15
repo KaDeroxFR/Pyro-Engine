@@ -15,15 +15,15 @@ internal class BuildAddons
 
 			Log.Info( "Step 1: Generate solution" );
 
-			string sboxDevPath = Path.Combine( gameDir, "sbox-dev.exe" );
-			if ( !File.Exists( sboxDevPath ) )
+			string pyroDevPath = Path.Combine( gameDir, "pyro-dev.exe" );
+			if ( !File.Exists( pyroDevPath ) )
 			{
-				Log.Error( $"Error: sbox-dev.exe not found at {sboxDevPath}" );
+				Log.Error( $"Error: pyro-dev.exe not found at {pyroDevPath}" );
 				return ExitCode.Failure;
 			}
 
 			bool gameTestSuccess = Utility.RunProcess(
-				sboxDevPath,
+				pyroDevPath,
 				"-generatesolution",
 				gameDir
 			);

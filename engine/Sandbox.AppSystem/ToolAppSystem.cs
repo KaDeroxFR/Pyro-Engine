@@ -37,7 +37,7 @@ public class ToolAppSystem : AppSystem, IDisposable
 
 		var createInfo = new AppSystemCreateInfo()
 		{
-			WindowTitle = "s&box tool",
+			WindowTitle = "Pyro tool",
 			Flags = AppSystemFlags.IsConsoleApp | AppSystemFlags.IsEditor
 		};
 

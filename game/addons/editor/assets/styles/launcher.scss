@@ -1,5 +1,10 @@
 @import "_palette.scss";
 
+// The launcher uses its own accent so the editor palette can remain independent.
+$accent: #FF5D3D;
+$accent-hover: #FF765B;
+$accent-active: #E64F32;
+
 //
 // The launcher's own styles - the project rows and creator. Everything
 // generic, and the palette variables, live in editor.scss.
@@ -140,7 +145,7 @@ LauncherWindow.dropping .projects { background-color: rgba( $accent, 0.06 ); bor
 	border-color: $accent;
 }
 
-// The project's face - its package thumbnail once that's loaded, its own gradient until then
+// The project's face - its package thumbnail once that's loaded, its own color until then
 .projectrow .thumb
 {
 	width: 38px;
@@ -154,7 +159,7 @@ LauncherWindow.dropping .projects { background-color: rgba( $accent, 0.06 ); bor
 	background-position: center;
 	color: #ffffff;
 	font-size: 14px;
-	font-weight: 700;
+	font-weight: 900;
 	transition: transform 0.15s ease-out;
 }
 
@@ -381,3 +386,16 @@ LauncherWindow.style-light .sectionlabel .text { color: $l-text; }
 .style-light .creator .template.selected { border-color: $accent; }
 .style-light .creator .template .icon { color: $l-text-muted; }
 .style-light .creator .template.selected .icon { color: $accent; }
+
+// Override shared editor controls when they are rendered by the launcher.
+LauncherWindow .lockup .brand-logo { width: 30px; height: 30px; flex-shrink: 0; }
+LauncherWindow .lockup .marque { background-color: $accent; }
+LauncherWindow .navitem.active { background-color: rgba( $accent, 0.14 ); }
+LauncherWindow .navitem.active .icon { color: $accent; }
+LauncherWindow .navitem.active .bar { background-color: $accent; }
+LauncherWindow .primarybutton { background-color: $accent; }
+LauncherWindow .primarybutton:hover { background-color: $accent-hover; }
+LauncherWindow .primarybutton:active { background-color: $accent-active; }
+LauncherWindow .textentry:focus { border-color: $accent; }
+LauncherWindow .iconbutton:focus,
+LauncherWindow .flatbutton:focus { outline-color: $accent; }

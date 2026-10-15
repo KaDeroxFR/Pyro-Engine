@@ -74,7 +74,7 @@ internal class BuildManaged( bool clean = false )
 			if ( launcherRid is not null )
 			{
 				Log.Info( $"Step 6: Publish {launcherRid} framework-dependent single-file launchers" );
-				var publishRoot = Path.Combine( Path.GetTempPath(), $"sbox-launchers-{Guid.NewGuid():N}" );
+				var publishRoot = Path.Combine( Path.GetTempPath(), $"pyro-launchers-{Guid.NewGuid():N}" );
 				Directory.CreateDirectory( publishRoot );
 				var completedLaunchers = 0;
 				BuildDisplay.Status( $"Publish {launcherRid} launchers" );
@@ -115,14 +115,14 @@ internal class BuildManaged( bool clean = false )
 
 					var name = project switch
 					{
-						"Sbox/Sbox.csproj" => "sbox",
-						"SboxDev/Sbox-Dev.csproj" => "sbox-dev",
-						"StandaloneTest/Sbox-Launcher.csproj" => "sbox-launcher",
-						"SboxServer/Sbox-Server.csproj" => "sbox-server",
-						_ => "benchmark"
+						"Sbox/Sbox.csproj" => "pyro",
+						"SboxDev/Sbox-Dev.csproj" => "pyro-dev",
+						"StandaloneTest/Sbox-Launcher.csproj" => "pyro-launcher",
+						"SboxServer/Sbox-Server.csproj" => "pyro-server",
+						_ => "pyro-benchmark"
 					};
 					var extension = OperatingSystem.IsWindows() ? ".exe" : "";
-					var destinationDirectory = name is "sbox" or "sbox-server" or "benchmark"
+					var destinationDirectory = name is "pyro" or "pyro-server" or "pyro-benchmark"
 						? Path.Combine( rootDir, "game", "bin", ".internal" )
 						: Path.Combine( rootDir, "game" );
 					Directory.CreateDirectory( destinationDirectory );
@@ -137,7 +137,7 @@ internal class BuildManaged( bool clean = false )
 
 				// delete any old .runtimeconfig.json that are hanging around
 				BuildDisplay.Status( "Remove old launcher files" );
-				var staleFiles = new[] { "sbox", "sbox-dev", "sbox-launcher", "sbox-server", "benchmark" }
+				var staleFiles = new[] { "sbox", "sbox-dev", "sbox-launcher", "sbox-server", "benchmark", "pyro", "pyro-dev", "pyro-launcher", "pyro-server", "pyro-benchmark" }
 					.SelectMany( name => new[] { $"{name}.dll", $"{name}.runtimeconfig.json" } )
 					// sbox-standalone belongs in bin/managed; a copy in the root would match the depot's *.exe
 					.Concat( ["sbox-standalone", "sbox-standalone.exe", "sbox-standalone.dll", "sbox-standalone.runtimeconfig.json"] );
@@ -148,7 +148,22 @@ internal class BuildManaged( bool clean = false )
 					if ( File.Exists( looseFile ) ) File.Delete( looseFile );
 				}
 
+				var launcherOutputDirectories = new[]
+				{
+					Path.Combine( rootDir, "game" ),
+					Path.Combine( rootDir, "game", "bin", ".internal" )
+				};
+
 				foreach ( var file in new[] { "sbox.exe", "sbox", "sbox-server.exe", "sbox-server", "benchmark.exe", "benchmark" } )
+				{
+					foreach ( var directory in launcherOutputDirectories )
+					{
+						var outputFile = Path.Combine( directory, file );
+						if ( File.Exists( outputFile ) ) File.Delete( outputFile );
+					}
+				}
+
+				foreach ( var file in new[] { "pyro.exe", "pyro-server.exe", "pyro-benchmark.exe", "pyro", "pyro-server", "pyro-benchmark" } )
 				{
 					var rootFile = Path.Combine( rootDir, "game", file );
 					if ( File.Exists( rootFile ) ) File.Delete( rootFile );

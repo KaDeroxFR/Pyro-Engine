@@ -214,7 +214,7 @@ public static class McpServer
 	/// Grow it here rather than repeating rules in every tool description.
 	/// </summary>
 	static readonly string Instructions = """
-		This server is embedded in the s&box editor and operates on the project that is currently open in it. Start with editor_status to see what's open and whether play mode is running. Your tool list is just the entry points - the real tools live in editor and addon code and come and go as code hotloads. Find them with search_tools, invoke them with call_tool, or batch several invocations with call_tools. After doing anything, read_console shows what the editor logged - errors and exceptions land there. Tool failures come back as results with isError rather than protocol errors, so read them and adapt.
+		This server is embedded in the Pyro editor and operates on the project that is currently open in it. Start with editor_status to see what's open and whether play mode is running. Your tool list is just the entry points - the real tools live in editor and addon code and come and go as code hotloads. Find them with search_tools, invoke them with call_tool, or batch several invocations with call_tools. After doing anything, read_console shows what the editor logged - errors and exceptions land there. Tool failures come back as results with isError rather than protocol errors, so read them and adapt.
 
 		Conventions, everywhere in the registry:
 		- Paging is 'limit' and 'offset'. Defaults and ranges are part of each parameter's schema, and out of range values clamp rather than error.
@@ -274,9 +274,9 @@ public static class McpServer
 			["serverInfo"] = new JsonObject
 			{
 				["name"] = "sbox-editor",
-				["title"] = "s&box Editor",
+				["title"] = "Pyro Editor",
 				["version"] = $"{Sandbox.Application.Version}",
-				["description"] = "The s&box editor - live tools for the project open in it"
+				["description"] = "The Pyro editor - live tools for the project open in it"
 			},
 			["instructions"] = Instructions
 		};

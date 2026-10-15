@@ -34,7 +34,7 @@ public class DropPage : GalleryPage
 		textChip.AddEventListener( "onmousedown", () =>
 		{
 			var drag = new Drag( textChip );
-			drag.SetText( "Dropped out of the s&box panel gallery" );
+			drag.SetText( "Dropped out of the Pyro panel gallery" );
 			Say( $"text drag → {drag.Start()}" );
 		} );
 
@@ -42,7 +42,7 @@ public class DropPage : GalleryPage
 		fileChip.AddEventListener( "onmousedown", () =>
 		{
 			var path = System.IO.Path.Combine( System.IO.Path.GetTempPath(), "sbox-drag-demo.txt" );
-			System.IO.File.WriteAllText( path, "Dragged out of the s&box panel gallery.\n" );
+			System.IO.File.WriteAllText( path, "Dragged out of the Pyro panel gallery.\n" );
 
 			var drag = new Drag( fileChip );
 			drag.SetFile( path );

@@ -175,11 +175,8 @@ class LauncherWindow : Panel
 		var brand = lockup.AddChild<Panel>();
 		brand.AddClass( "brand" );
 
-		var marque = brand.AddChild<Panel>();
-		marque.AddClass( "marque" );
-		marque.Add.Label( "s&" );
-
-		brand.Add.Label( "box", "wordmark" );
+		brand.Add.Image( "/tools/images/pyro-logo-transparent.png", "brand-logo" );
+		brand.Add.Label( "Engine", "wordmark" );
 
 		lockup.Add.Label( "EDITOR", "tagline" );
 	}
@@ -545,7 +542,7 @@ class LauncherWindow : Panel
 
 		var thumb = row.AddChild<Panel>();
 		thumb.AddClass( "thumb" );
-		thumb.Style.Set( "background-image", ChipGradient( project ) );
+		thumb.Style.Set( "background-color", ChipColor( project ) );
 
 		var letter = thumb.Add.Label( string.IsNullOrEmpty( title ) ? "?" : title.Substring( 0, 1 ).ToUpperInvariant() );
 
@@ -611,10 +608,12 @@ class LauncherWindow : Panel
 
 		packages[ident] = package;
 
-		if ( !string.IsNullOrEmpty( package.Thumb ) && thumb.IsValid() )
+		if ( thumb.IsValid() )
 		{
-			thumb.Style.Set( "background-image", $"url( {package.Thumb} )" );
-			letter.Delete();
+			thumb.Style.Set( "background-color", "#FF5D3D" );
+			thumb.Style.Set( "background-image", "url( logo_rounded.png )" );
+			if ( letter.IsValid() )
+				letter.Delete();
 		}
 
 		if ( !stats.IsValid() ) return;
@@ -646,19 +645,22 @@ class LauncherWindow : Panel
 	};
 
 	/// <summary>
-	/// Every project gets a chip of its own - a gradient keyed off its identity, so the same
-	/// project always wears the same colors.
+	/// Every project gets a stable color keyed off its identity, so the same project keeps
+	/// the same appearance between launcher refreshes.
 	/// </summary>
-	static string ChipGradient( Project project )
+	static string ChipColor( Project project )
 	{
+		var colors = new[]
+		{
+			"#101010", "#181818", "#212121", "#2C2C2C", "#363636", "#3F3F3F", "#484848", "#505050",
+			"#2A2D34", "#343A40", "#3B1115", "#4A121A", "#5C1D24", "#361418", "#421A1E", "#4D2010",
+			"#5C2B15", "#3D1B0B", "#4A2612", "#572E19", "#382C0E", "#453813", "#332D12", "#3B3416",
+			"#2D280F", "#122616", "#1B3320", "#0F241A", "#182D22", "#21382A", "#0D1B2A", "#14243B",
+			"#0F2332", "#1A2E40", "#182B38", "#26122B", "#331838", "#2B192E", "#211326", "#381D30"
+		};
+
 		var hash = StableHash( project.Config.Ident ?? project.Config.Title ?? "?" );
-
-		// Knuth spread - neighbouring hashes land far apart on the wheel
-		var hue = (hash * 2654435761u) % 360;
-		Color from = new ColorHsv( hue, 0.50f, 0.48f );
-		Color to = new ColorHsv( (hue + 45) % 360, 0.60f, 0.28f );
-
-		return $"linear-gradient( 45deg, {to.Hex} 0%, {from.Hex} 100% )";
+		return colors[(int)(hash % (uint)colors.Length)];
 	}
 
 	/// <summary>
@@ -781,14 +783,14 @@ class LauncherWindow : Panel
 	}
 
 	/// <summary>
-	/// Launch the editor on a project - same as the Qt launcher, hand off to sbox-dev.
+	/// Launch the editor on a project - same as the Qt launcher, hand off to pyro-dev.
 	/// </summary>
 	void LaunchProject( Project project )
 	{
 		project.LastOpened = DateTimeOffset.Now;
 		ProjectList.SaveList();
 
-		var info = new ProcessStartInfo( NetCore.GetExecutablePath( "sbox-dev" ), $"{Environment.CommandLine} -project \"{project.ConfigFilePath}\"" );
+		var info = new ProcessStartInfo( NetCore.GetExecutablePath( "pyro-dev" ), $"{Environment.CommandLine} -project \"{project.ConfigFilePath}\"" );
 
 		// Only let the shell start it on Windows - on Linux UseShellExecute goes through
 		// xdg-open, which opens the editor in a web browser rather than running it.

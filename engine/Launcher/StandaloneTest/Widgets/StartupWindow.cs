@@ -20,9 +20,9 @@ public partial class StartupWindow : Window
 		HasMaximizeButton = false;
 		Visible = false;
 
-		WindowTitle = "Welcome to the s&box editor";
+		WindowTitle = "Welcome to the Pyro editor";
 
-		SetWindowIcon( Pixmap.FromFile( "logo_rounded.png" ) );
+		SetWindowIcon( Pixmap.FromFile( "pyro-logo.png" ) );
 
 		CreateUI();
 

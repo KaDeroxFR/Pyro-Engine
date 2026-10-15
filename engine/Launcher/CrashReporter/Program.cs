@@ -184,7 +184,7 @@ class Program
 	}
 
 	/// <summary>
-	/// Attaches the most recent s&box log file (sbox.log or sbox-dev.log) if it exists and is under 10MB.
+	/// Attaches the most recent Pyro log file (pyro.log or pyro-dev.log) if it exists and is under 10MB.
 	/// </summary>
 	static void AttachLatestLog( Envelope envelope )
 	{
@@ -204,7 +204,7 @@ class Program
 				return;
 			}
 
-			var candidates = new[] { "sbox.log", "sbox-dev.log" }
+			var candidates = new[] { "pyro.log", "pyro-dev.log" }
 				.Select( name => new FileInfo( Path.Combine( logsDir, name ) ) )
 				.Where( fi => fi.Exists )
 				.OrderByDescending( fi => fi.LastWriteTimeUtc )
@@ -260,15 +260,15 @@ class Program
 
 	/// <summary>
 	/// Walks upward from the starting path to find the nearest ancestor that looks like a game root
-	/// (sbox.exe or sbox-dev.exe present). Optionally requires a specific subdirectory to exist.
+	/// (pyro.exe or pyro-dev.exe present). Optionally requires a specific subdirectory to exist.
 	/// </summary>
 	static string? FindGameRoot( string startPath, string? requiredSubdirectory = null )
 	{
 		var dir = Path.GetDirectoryName( startPath );
 		while ( !string.IsNullOrEmpty( dir ) )
 		{
-			var isRoot = File.Exists( Path.Combine( dir, "sbox-dev.exe" ) )
-				|| File.Exists( Path.Combine( dir, "bin", ".internal", "sbox.exe" ) );
+			var isRoot = File.Exists( Path.Combine( dir, "pyro-dev.exe" ) )
+				|| File.Exists( Path.Combine( dir, "bin", ".internal", "pyro.exe" ) );
 			var hasSubdir = requiredSubdirectory is null || Directory.Exists( Path.Combine( dir, requiredSubdirectory ) );
 
 			if ( isRoot && hasSubdir )
@@ -345,7 +345,7 @@ class Program
 			Console.WriteLine( $"Attached managed stacks: {data.Length:N0} bytes" );
 
 			// Delete the disk minidump after successful processing (retail builds only)
-			// Dev builds (sbox-dev.exe) keep the minidump for debugging
+			// Dev builds (pyro-dev.exe) keep the minidump for debugging
 			if ( !string.IsNullOrEmpty( minidumpPathToDelete ) && IsRetailBuild( minidumpPathToDelete ) )
 			{
 				try

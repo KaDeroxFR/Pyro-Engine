@@ -1,7 +1,7 @@
 ﻿namespace Sandbox;
 
 /// <summary>
-/// Used for sbox-dev editor
+/// Used for the Pyro editor
 /// </summary>
 public class EditorAppSystem : AppSystem
 {
@@ -21,7 +21,7 @@ public class EditorAppSystem : AppSystem
 
 		var createInfo = new AppSystemCreateInfo()
 		{
-			WindowTitle = "s&box editor",
+			WindowTitle = "Pyro editor",
 			Flags = AppSystemFlags.IsGameApp | AppSystemFlags.IsEditor
 		};
 

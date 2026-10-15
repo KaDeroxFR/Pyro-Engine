@@ -36,7 +36,7 @@ internal static class BenchmarkOrchestrator
 	private static RenderSettings.VideoModeSnapshot _preRunSnapshot;
 
 	/// <summary>
-	/// Called from Bootstrap when running as benchmark.exe. Parses CLI flags and starts the first package.
+	/// Called from Bootstrap when running as pyro-benchmark.exe. Parses CLI flags and starts the first package.
 	/// </summary>
 	internal static void InitFromCli()
 	{

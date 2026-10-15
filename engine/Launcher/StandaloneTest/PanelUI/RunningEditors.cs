@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 namespace Sandbox.LauncherUI;
 
 /// <summary>
-/// Which projects have an editor open right now. Found by asking the actual sbox-dev processes
+/// Which projects have an editor open right now. Found by asking the actual pyro-dev processes
 /// what -project they were started with, so editors count no matter who started them.
 /// </summary>
 static class RunningEditors
@@ -18,7 +18,7 @@ static class RunningEditors
 	{
 		var running = new HashSet<string>( StringComparer.OrdinalIgnoreCase );
 
-		foreach ( var process in Process.GetProcessesByName( "sbox-dev" ) )
+		foreach ( var process in Process.GetProcessesByName( "pyro-dev" ) )
 		{
 			try
 			{

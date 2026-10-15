@@ -28,7 +28,7 @@
   "BorderButton": "#484848",
 
   "Shadow": "#2a2a2a",
-  "Primary": "#2E70EA",
+  "Primary": "#FF5D3D",
   "Overlay": "#000000",
   "MultipleValues": "#525252",
   "Highlight": "#3e3e3e",
@@ -37,12 +37,12 @@
 
   "Base": "#202020",
   "BaseAlt": "#2a2a2a",
-  "Blue": "#2E70EA",
+  "Blue": "#FF5D3D",
   "Green": "#B0E24D",
   "Red": "#FB5A5A",
   "Yellow": "#E6DB74",
   "Pink": "#DF9194",
-  "Prefab": "#2E70EA",
+  "Prefab": "#FF5D3D",
   "Folder": "#E6DB74",
   
   "RowHeight": "24",

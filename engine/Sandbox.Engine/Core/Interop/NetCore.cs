@@ -14,8 +14,8 @@
 	internal static string NativeDllPath { get; set; } = DefaultNativeDllPath;
 
 	/// <summary>
-	/// Full path to one of our own executables sitting alongside this one, e.g. "sbox-dev" →
-	/// "sbox-dev.exe" on Windows and "sbox-dev" everywhere else. Starting one of these wants
+	/// Full path to one of our own executables sitting alongside this one, e.g. "pyro-dev" →
+	/// "pyro-dev.exe" on Windows and "pyro-dev" everywhere else. Starting one of these wants
 	/// the full path: without UseShellExecute the working directory isn't searched, and with
 	/// it Linux hands the file to xdg-open, which opens a browser instead of running it.
 	/// </summary>
@@ -53,7 +53,7 @@
 		}
 
 		// set engine paths etc
-		NativeEngine.EngineGlobal.Plat_SetModuleFilename( GetInternalExecutablePath( gameFolder, "sbox" ) );
+		NativeEngine.EngineGlobal.Plat_SetModuleFilename( GetInternalExecutablePath( gameFolder, "pyro" ) );
 		NativeEngine.EngineGlobal.Plat_SetCurrentDirectory( $"{gameFolder}" );
 	}
 }

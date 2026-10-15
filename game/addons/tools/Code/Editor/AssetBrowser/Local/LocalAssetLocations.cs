@@ -85,7 +85,7 @@ public class LocalAssetLocations : AssetLocations
 		//
 		// Base
 		//
-		BaseContentNode = new TreeNode.SmallHeader( "dns", "s&box" );
+		BaseContentNode = new TreeNode.SmallHeader( "dns", "Pyro" );
 
 		{
 			var d = new DirectoryInfo( FileSystem.Root.GetFullPath( "/addons/citizen/assets/" ) );

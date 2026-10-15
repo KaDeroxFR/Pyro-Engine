@@ -31,7 +31,7 @@ public class DedicatedServerAppSystem : AppSystem
 
 		var createInfo = new AppSystemCreateInfo()
 		{
-			WindowTitle = "s&box server",
+			WindowTitle = "Pyro server",
 			Flags = AppSystemFlags.IsDedicatedServer | AppSystemFlags.IsGameApp | AppSystemFlags.IsConsoleApp
 		};
 
@@ -65,7 +65,7 @@ public class DedicatedServerAppSystem : AppSystem
 
 	void PrintHelp()
 	{
-		Log.Info( "Welcome to the s&box dedicated server." );
+		Log.Info( "Welcome to the Pyro dedicated server." );
 		Log.Info( "Submit any issues to https://github.com/facepunch/sbox-public/issues" );
 		Log.Info( "" );
 		Log.Info( "game <gameident> - load a game" );

@@ -17,14 +17,14 @@ internal class NvPatch
 				return ExitCode.Failure;
 			}
 
-			Log.Info( "Step 1: Running nvpatch on sbox.exe" );
-			string sboxPath = Path.Combine( rootDir, "game", "bin", ".internal", "sbox.exe" );
-			if ( !RunNvPatch( nvpatchPath, sboxPath ) )
+			Log.Info( "Step 1: Running nvpatch on pyro.exe" );
+			string pyroPath = Path.Combine( rootDir, "game", "bin", ".internal", "pyro.exe" );
+			if ( !RunNvPatch( nvpatchPath, pyroPath ) )
 				return ExitCode.Failure;
 
-			Log.Info( "Step 2: Running nvpatch on sbox-dev.exe" );
-			string sboxDevPath = Path.Combine( rootDir, "game", "sbox-dev.exe" );
-			if ( !RunNvPatch( nvpatchPath, sboxDevPath ) )
+			Log.Info( "Step 2: Running nvpatch on pyro-dev.exe" );
+			string pyroDevPath = Path.Combine( rootDir, "game", "pyro-dev.exe" );
+			if ( !RunNvPatch( nvpatchPath, pyroDevPath ) )
 				return ExitCode.Failure;
 
 			Console.WriteLine( "NVPatch operations completed successfully!" );

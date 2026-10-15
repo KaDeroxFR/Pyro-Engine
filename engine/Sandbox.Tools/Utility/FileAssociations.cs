@@ -11,18 +11,18 @@ internal class FileAssociations
 	/// </summary>
 	internal static void Create()
 	{
-		var sboxExeFilePath = $"\"{FileSystem.Root.GetFullPath( "sbox-dev.exe" )}\"";
+		var pyroExeFilePath = $"\"{FileSystem.Root.GetFullPath( "pyro-dev.exe" )}\"";
 
 		try
 		{
 			RegistryKey fileTypeKey = Registry.CurrentUser.CreateSubKey( @"SOFTWARE\Classes\Sandbox.ProjectFile" );
 			fileTypeKey.SetValue( "", "Sandbox Project File" );
-			fileTypeKey.CreateSubKey( "DefaultIcon" ).SetValue( "", sboxExeFilePath );
+			fileTypeKey.CreateSubKey( "DefaultIcon" ).SetValue( "", pyroExeFilePath );
 
 			RegistryKey shellKey = fileTypeKey.CreateSubKey( "shell" );
 			RegistryKey shellOpenKey = shellKey.CreateSubKey( "open" );
 			shellOpenKey.SetValue( "", "Open" );
-			shellOpenKey.CreateSubKey( "command" ).SetValue( "", sboxExeFilePath + " -project \"%1\"" );
+			shellOpenKey.CreateSubKey( "command" ).SetValue( "", pyroExeFilePath + " -project \"%1\"" );
 
 			RegistryKey fileExtensionKey = Registry.CurrentUser.CreateSubKey( @"SOFTWARE\Classes\.sbproj" );
 			fileExtensionKey.SetValue( "", "Sandbox.ProjectFile" );

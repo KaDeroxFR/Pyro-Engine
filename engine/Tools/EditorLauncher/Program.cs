@@ -9,14 +9,14 @@ using Microsoft.Win32;
 namespace SboxEditorLauncher;
 
 /// <summary>
-/// A dumb little program for launching the s&box editor through it's own Steam App.
-/// It'll make sure s&box is actually installed, find it and run sbox-dev.exe
+/// A small program for launching the Pyro editor through its own Steam App.
+/// It'll make sure Pyro is actually installed, find it and run pyro-dev.exe
 /// Passing through any command line args properly etc.
 /// </summary>
 static partial class Program
 {
 	const uint SboxAppId = 590830;
-	const string SboxDevExe = "sbox-dev.exe";
+	const string PyroDevExe = "pyro-dev.exe";
 
 	[STAThread]
 	static int Main()
@@ -31,7 +31,7 @@ static partial class Program
 		var sboxPath = FindSboxInstallPath( steamPath );
 		if ( sboxPath is null )
 		{
-			// s&box not installed — trigger Steam install
+			// Pyro not installed — trigger Steam install
 			try
 			{
 				Process.Start( new ProcessStartInfo
@@ -48,10 +48,10 @@ static partial class Program
 			return 1;
 		}
 
-		var devExePath = Path.Combine( sboxPath, SboxDevExe );
+		var devExePath = Path.Combine( sboxPath, PyroDevExe );
 		if ( !File.Exists( devExePath ) )
 		{
-			ShowError( $"Could not find {SboxDevExe} in:\n{sboxPath}\n\nPlease verify the s&box installation in Steam." );
+			ShowError( $"Could not find {PyroDevExe} in:\n{sboxPath}\n\nPlease verify the Pyro installation in Steam." );
 			return 1;
 		}
 
@@ -77,7 +77,7 @@ static partial class Program
 			var process = Process.Start( startInfo );
 			if ( process is null )
 			{
-				ShowError( "Failed to start the s&box editor." );
+				ShowError( "Failed to start the Pyro editor." );
 				return 1;
 			}
 
@@ -86,7 +86,7 @@ static partial class Program
 		}
 		catch ( Exception ex )
 		{
-			ShowError( $"Failed to start the s&box editor:\n{ex.Message}" );
+			ShowError( $"Failed to start the Pyro editor:\n{ex.Message}" );
 			return 1;
 		}
 	}
@@ -116,7 +116,7 @@ static partial class Program
 	}
 
 	/// <summary>
-	/// Finds the s&box installation path by scanning Steam library folders.
+	/// Finds the Pyro installation path by scanning Steam library folders.
 	/// </summary>
 	static string FindSboxInstallPath( string steamPath )
 	{
@@ -317,7 +317,7 @@ static partial class Program
 
 	static void ShowError( string message )
 	{
-		MessageBoxW( IntPtr.Zero, message, "s&box Editor", 0x00000010 /* MB_ICONERROR */ );
+		MessageBoxW( IntPtr.Zero, message, "Pyro Editor", 0x00000010 /* MB_ICONERROR */ );
 	}
 
 	[LibraryImport( "user32.dll", StringMarshalling = StringMarshalling.Utf16 )]

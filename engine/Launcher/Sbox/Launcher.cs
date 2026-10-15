@@ -27,7 +27,7 @@ public class GameAppSystem : AppSystem
 
 		var createInfo = new AppSystemCreateInfo()
 		{
-			WindowTitle = "s&box",
+			WindowTitle = "Pyro",
 			Flags = AppSystemFlags.IsGameApp
 		};
 

@@ -10,13 +10,13 @@ namespace Editor;
 public static class LocalInstances
 {
 	/// <summary>
-	/// Launch sbox.exe with -joinlocal. Returns the process id.
+	/// Launch pyro.exe with -joinlocal. Returns the process id.
 	/// </summary>
 	public static int Spawn( bool? windowed = null )
 	{
 		using var p = new Process();
 
-		p.StartInfo.FileName = Path.Combine( Environment.CurrentDirectory, "bin", ".internal", "sbox.exe" );
+		p.StartInfo.FileName = Path.Combine( Environment.CurrentDirectory, "bin", ".internal", "pyro.exe" );
 		p.StartInfo.WorkingDirectory = Environment.CurrentDirectory;
 		p.StartInfo.CreateNoWindow = true;
 		p.StartInfo.RedirectStandardOutput = true;

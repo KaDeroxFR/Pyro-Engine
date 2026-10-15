@@ -253,7 +253,7 @@ public static class Application
 	[ConCmd( "version", Help = "Print info about the game version" )]
 	internal static void PrintVersion()
 	{
-		Log.Info( $"s&box version {Version} ({VersionDate})" );
+		Log.Info( $"Pyro version {Version} ({VersionDate})" );
 
 		if ( GamePackage is { } game )
 		{
