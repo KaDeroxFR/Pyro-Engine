@@ -23,12 +23,6 @@ class GameObjectHeader : Widget
 			topRow.Spacing = 4;
 			topRow.Margin = 8;
 
-			// big icon left
-			{
-				var left = topRow.AddRow();
-				left.Add( new GameObjectIconButton( this ) );
-			}
-
 			// 2 rows right
 			{
 				var right = topRow.AddColumn();

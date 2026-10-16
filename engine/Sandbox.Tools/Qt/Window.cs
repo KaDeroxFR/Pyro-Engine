@@ -127,7 +127,7 @@ namespace Editor
 			DeleteOnClose = true;
 			_mainWindow.setAnimated( false );
 
-			SetWindowIcon( "logo_rounded.png" );
+			SetWindowIcon( "pyro-logo-transparent.png" );
 		}
 
 		protected override void OnResize()

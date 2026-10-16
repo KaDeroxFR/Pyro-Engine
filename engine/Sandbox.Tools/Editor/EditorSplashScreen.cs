@@ -59,7 +59,7 @@ namespace Editor
 			if ( !string.IsNullOrEmpty( projectPath ) )
 			{
 				var projectDir = Path.GetDirectoryName( Path.GetFullPath( projectPath ) );
-				var customSplash = Path.Combine( projectDir, "splash_screen.png" );
+				var customSplash = Path.Combine( projectDir, "pyro_screen.png" );
 
 				if ( File.Exists( customSplash ) )
 				{
@@ -69,7 +69,7 @@ namespace Editor
 				}
 			}
 
-			return Pixmap.FromFile( "splash_screen.png" );
+			return Pixmap.FromFile( "pyro_screen.png" );
 		}
 
 		public override void OnDestroyed()
