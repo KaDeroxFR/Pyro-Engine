@@ -1,4 +1,7 @@
 <Project>
+	<PropertyGroup>
+		<ApplicationIcon>$(MSBuildThisFileDirectory)pyro.ico</ApplicationIcon>
+	</PropertyGroup>
 	<!-- StageLinuxRuntime ships this ICU version beside CoreCLR, in the host's native search path.
 	     The Steam runtime need not provide ICU. Keep in sync with SboxBuild's ICU package reference. -->
 	<ItemGroup Condition="'$(RuntimeIdentifier)' == 'linux-x64'">
