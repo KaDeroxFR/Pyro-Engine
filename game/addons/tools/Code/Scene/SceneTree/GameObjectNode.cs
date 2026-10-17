@@ -491,6 +491,25 @@ partial class GameObjectNode : TreeNode<GameObject>
 		}
 
 		var asset = AssetSystem.FindByPath( e.Data.FileOrFolder );
+		if ( Value is not Scene
+			&& e.Data.FileOrFolder is { } csPath
+			&& csPath.EndsWith( ".cs", StringComparison.OrdinalIgnoreCase ) )
+		{
+			var types = ScriptDrop.FindComponentTypes( csPath );
+			if ( types.Count == 0 ) return DropAction.Ignore;
+
+			if ( e.IsDrop )
+			{
+				var targetGo = Value;
+				using var scene = SceneEditorSession.Scope();
+				using ( SceneEditorSession.Active.UndoScope( "Add Component" ).WithComponentCreations().Push() )
+				{
+					foreach ( var t in types )
+						targetGo.Components.Create( t );
+				}
+			}
+			return DropAction.Copy;
+		}
 		if ( asset is not null && asset.AssetType.FileExtension == "prefab" )
 		{
 			var pf = asset.LoadResource<PrefabFile>();
