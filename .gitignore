@@ -109,3 +109,5 @@ engine/TestResults/
 !/game/core/tools/images/pyro_screen.png
 !/game/core/tools/images/pyro_screen.png.meta
 !/engine/launcher/pyro.ico
+!/.github/assets/logo.png
+!/.github/assets/logotransparent.png
